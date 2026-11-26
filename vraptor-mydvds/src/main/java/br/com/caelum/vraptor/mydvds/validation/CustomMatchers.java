@@ -24,13 +24,13 @@ import org.hamcrest.TypeSafeMatcher;
  * @author Lucas Cavalcanti
  *
  */
-public final class CustomMatchers {
+public class CustomMatchers {
 
     private static TypeSafeMatcher<String> EMPTY = new TypeSafeMatcher<String>() {
 
         @Override
         protected void describeMismatchSafely(String item, Description mismatchDescription) {
-            mismatchDescription.appendText(' ' + item);
+            mismatchDescription.appendText(" " + item);
         }
 
         @Override
@@ -43,10 +43,6 @@ public final class CustomMatchers {
         }
 
     };
-
-	private CustomMatchers() {
-		throw new InstantiationError( "Must not instantiate this class" );
-	}
 
     /**
      * matches if the given string is not empty. This matcher is null-safe.

@@ -54,26 +54,5 @@ public interface PageResult extends View {
 	 * will render the view /WEB-INF/jsp/clients/list.jsp without calling list method.
 	 */
 	<T> T of(Class<T> controllerType);
-	
-	/**
-	 * @deprecated  As of 3.2, replaced by
-	 *		  {@link #redirectTo(String url)}
-	 */
-	@Deprecated
-	void redirect(String url);
-	
-	/**
-	 * @deprecated  As of 3.2, replaced by
-	 *		  {@link #forwardTo(String url)}
-	 */
-	@Deprecated
-	void forward(String url);
-	
-	/**
-	 * @deprecated  As of 3.2, replaced by
-	 *		  {@link #forwardTo()}
-	 */
-	@Deprecated
-	void forward();
 
 }

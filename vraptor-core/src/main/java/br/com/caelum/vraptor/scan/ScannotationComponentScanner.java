@@ -15,7 +15,7 @@
  */
 package br.com.caelum.vraptor.scan;
 
-import static com.google.common.base.Objects.firstNonNull;
+import static com.google.common.base.MoreObjects.firstNonNull;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -107,7 +107,7 @@ public class ScannotationComponentScanner implements ComponentScanner {
 	} while (urls.hasMoreElements());
 	}
 
-	private static String toFileName(String resource, URL url) {
+	private String toFileName(String resource, URL url) {
 	String file = url.getFile().substring(0, url.getFile().length() - resource.length() - 1).replaceAll("(!)(/)?$", "");
 
 	if (!file.startsWith("file:")) {
@@ -138,7 +138,7 @@ public class ScannotationComponentScanner implements ComponentScanner {
 	}
 	}
 
-	private static boolean packagesContains(List<String> basePackages, String clazz) {
+	private boolean packagesContains(List<String> basePackages, String clazz) {
 	for (String basePackage : basePackages) {
 		if (clazz.startsWith(basePackage)) {
 		return true;
@@ -153,7 +153,7 @@ public class ScannotationComponentScanner implements ComponentScanner {
 	results.addAll(myStereotypes);
 	}
 
-	private static void addVRaptorStereotypes(HashSet<String> results) {
+	private void addVRaptorStereotypes(HashSet<String> results) {
 	for (Class<? extends Annotation> stereotype : BaseComponents.getStereotypes()) {
 		results.add(stereotype.getName());
 	}

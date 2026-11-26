@@ -26,7 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner.Silent;
 
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.core.Localization;
@@ -36,7 +36,7 @@ import br.com.caelum.vraptor.proxy.Proxifier;
 import br.com.caelum.vraptor.util.EmptyBundle;
 import br.com.caelum.vraptor.view.ValidationViewsFactory;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(Silent.class)
 public class ValidatorAcceptanceTest {
 	private @Mock Result result;
 	private @Mock Localization localization;

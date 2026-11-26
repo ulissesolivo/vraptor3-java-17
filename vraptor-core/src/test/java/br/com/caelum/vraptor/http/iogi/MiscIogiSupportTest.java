@@ -121,7 +121,7 @@ public class MiscIogiSupportTest {
 	final Target<House> target = Target.create(House.class, "house");
 	final Parameter parameter = new Parameter("house.cat.firstLeg.id", "");
 	final House house = iogi.instantiate(target, parameter);
-	assertThat(house.cat.firstLeg.id, is(equalTo(null)));
+	org.junit.Assert.assertNull(house.cat.firstLeg.id);
 	}
 
 	@Test

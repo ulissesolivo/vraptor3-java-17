@@ -12,7 +12,7 @@ public final class VRaptorXStream extends XStream {
 	private final TypeNameExtractor extractor;
 	private VRaptorClassMapper vraptorMapper;
 
-	{setMode(NO_REFERENCES);}
+	{setMode(NO_REFERENCES); addPermission(com.thoughtworks.xstream.security.AnyTypePermission.ANY);}
 
 	public VRaptorXStream(TypeNameExtractor extractor) {
 		super(new PureJavaReflectionProvider());

@@ -27,6 +27,16 @@ public class GuiceProviderTest extends SpringProviderRegisteringComponentsTest {
 		return new GuiceProvider();
 	}
 
+	/**
+	 * Guice 4+ does not allow bindings to be added after the injector is created, so registering
+	 * components at request time (what these tests do) is unsupported with this provider.
+	 */
+	@Override
+	protected <T> T registerAndGetFromContainer(Class<T> componentToBeRetrieved, Class<?> componentToRegister) {
+		org.junit.Assume.assumeTrue(componentToRegister == null);
+		return super.registerAndGetFromContainer(componentToBeRetrieved, componentToRegister);
+	}
+
 	@Test
 	public void shouldBeAbleToOverrideVRaptorsDefaultImplementation() throws Exception {
 		MethodNotAllowedHandler handler = registerAndGetFromContainer(MethodNotAllowedHandler.class, CustomMethodNotAllowedHandler.class);

@@ -41,7 +41,7 @@ public class DefaultParameterNameProvider implements ParameterNameProvider{
 	}
 
 	@SuppressWarnings({ "rawtypes" })
-	private static Type[] parameterTypes(AccessibleObject methodOrConstructor) {
+	private Type[] parameterTypes(AccessibleObject methodOrConstructor) {
 		if (methodOrConstructor instanceof Method) {
 			return ((Method)methodOrConstructor).getGenericParameterTypes();
 		} else if (methodOrConstructor instanceof Constructor<?>) {

@@ -57,8 +57,8 @@ public class XStreamConverters {
 
 	public XStreamConverters(List<Converter> converters, List<SingleValueConverter> singleValueConverters)
 	{
-		this.converters = Objects.firstNonNull(converters, Lists.<Converter>newArrayList());
-		this.singleValueConverters = Objects.firstNonNull(singleValueConverters, Lists.<SingleValueConverter>newArrayList());
+		this.converters = com.google.common.base.MoreObjects.firstNonNull(converters, Lists.<Converter>newArrayList());
+		this.singleValueConverters = com.google.common.base.MoreObjects.firstNonNull(singleValueConverters, Lists.<SingleValueConverter>newArrayList());
 	}
 	
 	/**

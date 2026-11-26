@@ -110,9 +110,9 @@ public class SpringBasedContainer extends AbstractComponentRegistry implements C
 
 	public void stop() {
 	parentContext.stop();
-	if (parentContext instanceof DisposableBean){
+	if (parentContext instanceof org.springframework.context.ConfigurableApplicationContext) {
 			try {
-				((DisposableBean)parentContext).destroy();
+				((org.springframework.context.ConfigurableApplicationContext) parentContext).close();
 			} catch (Exception e) {
 				logger.error("Error when destroying application context", e);
 			}

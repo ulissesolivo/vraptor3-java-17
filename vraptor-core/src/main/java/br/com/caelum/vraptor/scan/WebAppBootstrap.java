@@ -26,14 +26,13 @@ import br.com.caelum.vraptor.ComponentRegistry;
 public interface WebAppBootstrap {
 
 	/**
-	 * Class name of the generated WebAppBootStrap impl
-	 */
-	String STATIC_BOOTSTRAP_NAME = "br.com.caelum.vraptor.generated.StaticProjectBootstrap";
-
-	/**
 	 * Configure all components using ComponentRegistry
 	 * @param registry
 	 */
 	void configure (ComponentRegistry registry);
 
+	/**
+	 * Class name of the generated WebAppBootStrap impl
+	 */
+	String STATIC_BOOTSTRAP_NAME = "br.com.caelum.vraptor.generated.StaticProjectBootstrap";
 }

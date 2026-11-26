@@ -16,7 +16,7 @@
  */
 package br.com.caelum.vraptor.view;
 
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -272,9 +272,9 @@ public class DefaultValidationViewsFactoryTest {
 	public void onXMLSerializationResultShouldThrowExceptionOnlyOnSerializeMethod() throws Exception {
 		JSONSerialization serialization = mock(JSONSerialization.class);
 
-		serializerBuilder = mock(SerializerBuilder.class, new Answer<SerializerBuilder>() {
-			public SerializerBuilder answer(InvocationOnMock invocation) throws Throwable {
-				return serializerBuilder;
+		serializerBuilder = mock(SerializerBuilder.class, new Answer<Object>() {
+			public Object answer(InvocationOnMock invocation) throws Throwable {
+				return invocation.getMethod().getReturnType() == void.class ? null : serializerBuilder;
 			}
 		});
 

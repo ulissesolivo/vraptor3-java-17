@@ -23,8 +23,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.never;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -229,6 +229,6 @@ public class DefaultResultTest {
 	@Test
 	public void shouldNotIncludeTheAttributeWhenTheValueIsNull() throws Exception {
 		result.include(null);
-		verify(request, never()).setAttribute(anyString(), anyObject());
+		verify(request, never()).setAttribute(anyString(), any());
 	}
 }

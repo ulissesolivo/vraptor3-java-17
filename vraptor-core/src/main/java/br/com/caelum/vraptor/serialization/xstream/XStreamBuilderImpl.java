@@ -48,13 +48,7 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 	private boolean indented;
 	private boolean withoutRoot;
 	private boolean recursive;
-
-	protected static final String DEFAULT_NEW_LINE = "";
-	protected static final char[] DEFAULT_LINE_INDENTER = {};
-
-	protected static final String INDENTED_NEW_LINE = "\n";
-	protected static final char[] INDENTED_LINE_INDENTER = { ' ', ' '};
-
+	
 	public XStreamBuilderImpl(XStreamConverters converters, TypeNameExtractor extractor) {
 		this.converters = converters;
 		this.extractor = extractor;
@@ -72,6 +66,12 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 		return configure(xstream);
 	}
 	
+	protected static final String DEFAULT_NEW_LINE = "";
+	protected static final char[] DEFAULT_LINE_INDENTER = {};
+	
+	protected static final String INDENTED_NEW_LINE = "\n";
+	protected static final char[] INDENTED_LINE_INDENTER = { ' ', ' '};
+	
 	public XStream jsonInstance() {
 		return configure(new VRaptorXStream(extractor, getHierarchicalStreamDriver()));
 	}
@@ -86,8 +86,8 @@ public class XStreamBuilderImpl implements XStreamBuilder {
 	  * @return configured hierarchical driver
 	  */
 	protected HierarchicalStreamDriver getHierarchicalStreamDriver() {
-	final String newLine = indented ? INDENTED_NEW_LINE : DEFAULT_NEW_LINE;
-	final char[] lineIndenter = indented ? INDENTED_LINE_INDENTER : DEFAULT_LINE_INDENTER;
+	final String newLine = (indented ? INDENTED_NEW_LINE : DEFAULT_NEW_LINE);
+	final char[] lineIndenter = (indented ? INDENTED_LINE_INDENTER : DEFAULT_LINE_INDENTER);
 
 	return new JsonHierarchicalStreamDriver() {
 		public HierarchicalStreamWriter createWriter(Writer writer) {

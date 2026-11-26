@@ -1,9 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.caelum</groupId>
 	<artifactId>vraptor-parent</artifactId>
-	<version>3.5.6-SNAPSHOT</version>
+	<version>3.6.0</version>
 	<name>VRaptor3</name>
 	<packaging>pom</packaging>
 
@@ -28,17 +30,17 @@
 			</roles>
 			<timezone>-3</timezone>
 		</developer>
-                <developer>
-                        <id>Turini</id>
-                        <name>Rodrigo Turini</name>
-                        <email>rodrigo.turini@caelum.com.br</email>
-                        <organization>Caelum</organization>
-                        <organizationUrl>http://www.caelum.com.br</organizationUrl>
-                        <roles>
-                                <role>developer</role>
-                        </roles>
-                        <timezone>-3</timezone>
-                </developer>
+		<developer>
+			<id>Turini</id>
+			<name>Rodrigo Turini</name>
+			<email>rodrigo.turini@caelum.com.br</email>
+			<organization>Caelum</organization>
+			<organizationUrl>http://www.caelum.com.br</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>-3</timezone>
+		</developer>
 		<developer>
 			<id>peas</id>
 			<name>Paulo Silveira</name>
@@ -81,6 +83,10 @@
 	</modules>
 
 	<properties>
+		<java.version>17</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -101,9 +107,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.7</version>
+				<version>3.11.2</version>
 				<configuration>
-					<additionalparam>${javadoc.opts}</additionalparam>
+					<doclint>none</doclint>
 				</configuration>
 				<executions>
 					<execution>
@@ -117,31 +123,47 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
+				<version>3.13.0</version>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<release>17</release>
+					<parameters>true</parameters>
 				</configuration>
 			</plugin>
-                        <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-release-plugin</artifactId>
-                                <version>2.4.2</version>
-                                <dependencies>
-                                        <dependency>
-                                                <groupId>org.apache.maven.scm</groupId>
-                                                <artifactId>maven-scm-provider-gitexe</artifactId>
-                                                <version>1.8.1</version>
-                                        </dependency>
-                                </dependencies>
-                        </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<argLine>--add-opens java.base/java.lang=ALL-UNNAMED --add-opens
+						java.base/java.util.concurrent.locks=ALL-UNNAMED
+						--add-opens java.base/java.io=ALL-UNNAMED --add-opens
+						java.base/java.net=ALL-UNNAMED --add-opens
+						java.base/java.math=ALL-UNNAMED --add-opens
+						java.base/java.util=ALL-UNNAMED --add-opens
+						java.base/java.util.concurrent=ALL-UNNAMED --add-opens
+						java.base/java.lang.reflect=ALL-UNNAMED --add-opens
+						java.base/java.text=ALL-UNNAMED --add-opens
+						java.desktop/java.awt.font=ALL-UNNAMED</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>1.8.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
 	<profiles>
 		<profile>
 			<id>doclint-java8-disable</id>
 			<activation>
-			<jdk>[1.8,)</jdk>
+				<jdk>[1.8,)</jdk>
 			</activation>
 			<properties>
 				<javadoc.opts>-Xdoclint:none</javadoc.opts>

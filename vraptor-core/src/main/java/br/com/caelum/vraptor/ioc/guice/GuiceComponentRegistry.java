@@ -140,7 +140,7 @@ public class GuiceComponentRegistry implements ComponentRegistry {
 		Constructor constructor = getConstructor(componentType);
 		for (Type type : constructor.getGenericParameterTypes()) {
 			if (type instanceof ParameterizedType) {
-				ParameterizedType ptype =(ParameterizedType) type;
+				ParameterizedType ptype =((ParameterizedType) type);
 				if (ptype.getRawType() instanceof Class<?> && List.class.isAssignableFrom((Class<?>) ptype.getRawType())
 						&& ptype.getRawType() instanceof Class<?> && !listTypes.contains(ptype.getActualTypeArguments()[0])) {
 					listTypes.add((Class<?>) ptype.getActualTypeArguments()[0]);
@@ -167,6 +167,7 @@ public class GuiceComponentRegistry implements ComponentRegistry {
 			final Class<?> target = new ComponentFactoryIntrospector().targetTypeForComponentFactory(componentType);
 			Type adapterType = Types.newParameterizedType(ComponentFactoryProviderAdapter.class, target);
 			Type factoryType = Types.newParameterizedType(ComponentFactory.class, target);
+//			binder.bind(TypeLiteral.get(adapterType));
 			binder.bind(TypeLiteral.get(factoryType)).to(componentType);
 			binder.bind(target).toProvider((TypeLiteral) TypeLiteral.get(adapterType));
 		}

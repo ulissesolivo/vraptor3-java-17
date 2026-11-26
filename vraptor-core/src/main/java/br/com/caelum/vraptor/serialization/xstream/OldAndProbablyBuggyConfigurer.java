@@ -1,7 +1,7 @@
 package br.com.caelum.vraptor.serialization.xstream;
 
 import static br.com.caelum.vraptor.serialization.xstream.VRaptorClassMapper.isPrimitive;
-import static com.google.common.base.Objects.firstNonNull;
+import static com.google.common.base.MoreObjects.firstNonNull;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
@@ -65,7 +65,7 @@ public class OldAndProbablyBuggyConfigurer {
 		excludesMap.remove(parentType, fieldName);
 	}
 	
-	private static String getNameFor(String name) {
+	private String getNameFor(String name) {
 		String[] path = name.split("\\.");
 		return path[path.length-1];
 	}

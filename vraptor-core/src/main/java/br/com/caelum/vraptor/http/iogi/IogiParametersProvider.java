@@ -98,7 +98,7 @@ public class IogiParametersProvider implements ParametersProvider {
 		return targets;
 	}
 
-	private static int methodArity(Method method) {
+	private int methodArity(Method method) {
 		return method.getGenericParameterTypes().length;
 	}
 

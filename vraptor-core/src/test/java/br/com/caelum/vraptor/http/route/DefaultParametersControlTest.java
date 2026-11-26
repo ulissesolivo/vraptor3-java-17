@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -44,7 +44,7 @@ public class DefaultParametersControlTest {
 	private @Mock MutableRequest request;
 	private @Mock Converters converters;
 	private @Mock TwoWayConverter converter;
-	private final Evaluator evaluator = new JavaEvaluator();
+	private Evaluator evaluator = new JavaEvaluator();
 
 	@Before
 	public void setup() {

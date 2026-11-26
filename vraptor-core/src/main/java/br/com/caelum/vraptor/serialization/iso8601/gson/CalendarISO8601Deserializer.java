@@ -27,8 +27,10 @@ public class CalendarISO8601Deserializer implements JsonDeserializer<Calendar> {
 
 		try {
 			String value = json.getAsString();
-			
-			return iso8601.toCalendar(value);
+
+			Calendar calendar = iso8601.toCalendar(value);
+
+			return calendar;
 		} catch (ParseException e) {
 			throw new ConversionError("Error to convert Calendar: "	+ e.getMessage());
 		}

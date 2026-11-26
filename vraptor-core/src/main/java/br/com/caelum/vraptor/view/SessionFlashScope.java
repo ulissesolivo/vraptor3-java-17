@@ -44,7 +44,7 @@ public class SessionFlashScope implements FlashScope {
 		return args;
 	}
 
-	private static String nameFor(ResourceMethod method) {
+	private String nameFor(ResourceMethod method) {
 		return KEY_START + method.getMethod();
 	}
 

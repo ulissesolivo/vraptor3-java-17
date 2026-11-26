@@ -32,7 +32,7 @@ public class ConverterHandler implements StereotypeHandler {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConverterHandler.class);
 
-	private final Converters converters;
+	private Converters converters;
 
 	public ConverterHandler(Converters converters) {
 		this.converters = converters;

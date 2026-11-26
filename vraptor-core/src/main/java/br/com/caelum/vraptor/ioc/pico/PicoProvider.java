@@ -62,11 +62,11 @@ public class PicoProvider implements ContainerProvider {
 
 	private final class AppScopedContainer implements Container {
 		public <T> T instanceFor(Class<T> type) {
-			Container containerLocal = containersByThread.get();
-			if (containerLocal == null) {
+			Container container = containersByThread.get();
+			if (container == null) {
 				return picoContainer.getComponent(type);
 			}
-			return containerLocal.instanceFor(type);
+			return container.instanceFor(type);
 		}
 
 		public <T> boolean canProvide(Class<T> type) {
@@ -155,7 +155,7 @@ public class PicoProvider implements ContainerProvider {
 		}
 	}
 
-	private static void registerAll(ComponentRegistry registry, Map<Class<?>, Class<?>> scope) {
+	private void registerAll(ComponentRegistry registry, Map<Class<?>, Class<?>> scope) {
 		for (Map.Entry<Class<?>, Class<?>> entry : scope.entrySet()) {
 		registry.register(entry.getKey(), entry.getValue());
 		registry.register(entry.getValue(), entry.getValue());

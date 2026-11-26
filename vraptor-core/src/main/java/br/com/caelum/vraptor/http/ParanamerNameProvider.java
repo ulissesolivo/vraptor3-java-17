@@ -40,7 +40,7 @@ import com.thoughtworks.paranamer.Paranamer;
  */
 @ApplicationScoped
 public class ParanamerNameProvider implements ParameterNameProvider {
-	private final Paranamer info = new CachingParanamer(new AnnotationParanamer(new BytecodeReadingParanamer()));
+	private final Paranamer info = new CachingParanamer(new AnnotationParanamer(new ReflectionFirstParanamer()));
 
 	private static final Logger logger = LoggerFactory.getLogger(ParanamerNameProvider.class);
 
@@ -56,10 +56,47 @@ public class ParanamerNameProvider implements ParameterNameProvider {
 			String[] defensiveCopy = new String[parameterNames.length];
 			System.arraycopy(parameterNames, 0, defensiveCopy, 0, parameterNames.length);
 			return defensiveCopy;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new IllegalStateException("Paranamer could not read the class file of " + method
+				+ ". It is probably newer than paranamer supports; compile your code with javac -parameters.", e);
 		} catch (ParameterNamesNotFoundException e) {
 			throw new IllegalStateException("Paranamer were not able to find your parameter names for " + method
 					+ "You must compile your code with debug information (javac -g) or register another "
 					+ "name provider. Try to use " + DefaultParameterNameProvider.class.getName() + " instead.");
+		}
+	}
+
+	/**
+	 * Uses the names kept by the compiler (javac -parameters) when present, which does not depend on
+	 * reading the class bytecode (older paranamer versions fail on recent class file formats). Falls back
+	 * to the bytecode reading otherwise. Names from {@code @Named} still take precedence.
+	 */
+	private static class ReflectionFirstParanamer implements Paranamer {
+		private final Paranamer bytecode = new BytecodeReadingParanamer();
+
+		public String[] lookupParameterNames(AccessibleObject methodOrCtor) {
+			return lookupParameterNames(methodOrCtor, true);
+		}
+
+		public String[] lookupParameterNames(AccessibleObject methodOrCtor, boolean throwExceptionIfMissing) {
+			if (methodOrCtor instanceof java.lang.reflect.Executable) {
+				java.lang.reflect.Parameter[] parameters = ((java.lang.reflect.Executable) methodOrCtor).getParameters();
+				String[] names = new String[parameters.length];
+				boolean present = true;
+				for (int i = 0; i < parameters.length && present; i++) {
+					present = parameters[i].isNamePresent();
+					names[i] = parameters[i].getName();
+				}
+				if (present) {
+					return names;
+				}
+			}
+			try {
+				return bytecode.lookupParameterNames(methodOrCtor, throwExceptionIfMissing);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				throw new IllegalStateException("Paranamer could not read the class file of " + methodOrCtor
+					+ ". It is probably newer than paranamer supports; compile your code with javac -parameters.", e);
+			}
 		}
 	}
 

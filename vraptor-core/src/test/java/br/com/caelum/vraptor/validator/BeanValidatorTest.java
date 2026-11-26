@@ -67,7 +67,7 @@ public class BeanValidatorTest {
 		List<Message> messages = beanValidator.validate(customer0);
 		
 		assertThat(messages, not(hasSize(0)));
-		assertThat(messages.toString(), containsString("não pode ser nulo"));
+		assertThat(messages.toString(), containsString("não deve ser nulo"));
 	}
 	
 	@Test
@@ -77,7 +77,7 @@ public class BeanValidatorTest {
 		List<Message> messages = beanValidator.validate(customer0);
 		
 		assertThat(messages, not(hasSize(0)));
-		assertThat(messages.toString(), containsString("may not be null"));
+		assertThat(messages.toString(), containsString("must not be null"));
 	}
 	
 	@Test

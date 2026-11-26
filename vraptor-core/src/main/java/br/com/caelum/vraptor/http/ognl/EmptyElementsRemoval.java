@@ -80,11 +80,11 @@ public class EmptyElementsRemoval {
 			}
 		}
 		collections.clear();
-		for (Map.Entry<SetValue, Object> setValueObjectEntry : arrays.entrySet()) {
-			Object array = setValueObjectEntry.getValue();
+		for (SetValue setter : arrays.keySet()) {
+			Object array = arrays.get(setter);
 			Object newArray = removeNullsFromArray(array);
 			try {
-				setValueObjectEntry.getKey().set(newArray);
+				setter.set(newArray);
 			} catch (InvocationTargetException e) {
 				throw new VRaptorException(e.getCause());
 			} catch (Exception e) {

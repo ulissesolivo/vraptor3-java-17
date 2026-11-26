@@ -1,7 +1,7 @@
 package br.com.caelum.vraptor.http;
 
 import static br.com.caelum.vraptor.config.BasicConfiguration.ENCODING;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

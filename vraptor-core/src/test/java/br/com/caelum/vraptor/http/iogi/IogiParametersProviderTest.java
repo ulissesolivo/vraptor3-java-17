@@ -39,8 +39,8 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.sameInstance;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -162,7 +162,8 @@ public class IogiParametersProviderTest extends ParametersProviderTest {
 		Set<Long> abc = getParameters(set);
 
 		assertThat(abc, hasSize(2));
-		assertThat(abc, allOf(hasItem(1l), hasItem(2l)));
+		assertThat(abc, hasItem(1l));
+		assertThat(abc, hasItem(2l));
 	}
 	
 	@Test

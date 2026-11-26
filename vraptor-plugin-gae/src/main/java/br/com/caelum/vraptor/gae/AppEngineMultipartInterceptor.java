@@ -21,7 +21,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.FileItemFactory;
-import org.gmr.web.multipart.GFileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Validator;
@@ -34,7 +34,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 
 /**
  * Implementation for {@link CommonsUploadMultipartInterceptor} to use in GAE/J, that creates
- * a {@link GFileItemFactory} as {@link FileItemFactory}.
+ * an in-memory {@link DiskFileItemFactory} as {@link FileItemFactory}.
  * 
  * @author Pedro Matiello
  * @since 3.0
@@ -51,6 +51,7 @@ public class AppEngineMultipartInterceptor extends CommonsUploadMultipartInterce
 
 	@Override
 	protected FileItemFactory createFactoryForDiskBasedFileItems(File temporaryDirectory) {
-		return new GFileItemFactory();
+		// threshold maximo: itens ficam em memoria e nunca sao gravados em disco (GAE nao permite)
+		return new DiskFileItemFactory(Integer.MAX_VALUE, temporaryDirectory);
 	}
 }

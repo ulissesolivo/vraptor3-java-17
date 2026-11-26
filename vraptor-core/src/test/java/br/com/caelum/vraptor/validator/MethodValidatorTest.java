@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
@@ -141,7 +141,7 @@ public class MethodValidatorTest {
 
 	assertThat(validator.getErrors(), hasSize(1));
 	assertThat(validator.getErrors().get(0).getCategory(), is("withConstraint.email"));
-	assertThat(validator.getErrors().get(0).getMessage(), is("may not be null"));
+	assertThat(validator.getErrors().get(0).getMessage(), is("must not be null"));
 	}
 
 	@Test
@@ -160,7 +160,7 @@ public class MethodValidatorTest {
 
 	assertThat(validator.getErrors(), hasSize(3));
 	
-	assertThat(messages, containsString("não pode ser nulo"));
+	assertThat(messages, containsString("não deve ser nulo"));
 	assertThat(messages, containsString("withTwoConstraints.name"));
 	assertThat(messages, containsString("withTwoConstraints.customer.name"));
 	assertThat(messages, containsString("withTwoConstraints.customer.id"));

@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
 public class VRaptorResponse extends HttpServletResponseWrapper implements MutableResponse {
 
 	private final List<RedirectListener> listeners = new ArrayList<RedirectListener>();
-	private final HttpServletResponse response;
+	private HttpServletResponse response;
 
 	public VRaptorResponse(HttpServletResponse response) {
 		super(response);

@@ -18,7 +18,7 @@ import br.com.caelum.vraptor.validator.MessageInterpolatorFactory;
  */
 public class JSR303MockValidator extends MockValidator {
 
-	private final DefaultBeanValidator that;
+	private DefaultBeanValidator that;
 
 	private static final ValidatorFactory validatorFactory;
 

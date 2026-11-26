@@ -26,12 +26,7 @@ import org.hamcrest.TypeSafeMatcher;
 
 import br.com.caelum.vraptor.http.route.Route;
 
-public final class VRaptorMatchers {
-
-	private VRaptorMatchers () {
-		throw new InstantiationError( "Must not instantiate this class" );
-	}
-
+public class VRaptorMatchers {
 	public static Matcher<Collection<?>> hasOneCopyOf(final Object item) {
 		return new TypeSafeMatcher<Collection<?>>(){
 

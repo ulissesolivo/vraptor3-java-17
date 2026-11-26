@@ -199,7 +199,7 @@ import com.thoughtworks.xstream.converters.SingleValueConverter;
  *
  * @author guilherme silveira
  */
-public final class BaseComponents {
+public class BaseComponents {
 
 	static final Logger logger = LoggerFactory.getLogger(BaseComponents.class);
 
@@ -325,10 +325,6 @@ public final class BaseComponents {
 		Intercepts.class
 	};
 
-	private BaseComponents() {
-		throw new InstantiationError( "Must not instantiate this class" );		
-	}
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static final Set<Class<? extends Deserializer>> DESERIALIZERS = new HashSet(Arrays.asList(
 			XMLDeserializer.class, 
@@ -420,6 +416,19 @@ public final class BaseComponents {
 			Class.forName(className);
 			return true;
 		} catch (ClassNotFoundException e) {
+			return false;
+		}
+	}
+
+	private static boolean registerIfClassPresent(Map<Class<?>, Class<?>> components, String className, Class<?>... types) {
+		try {
+			Class.forName(className);
+			for (Class<?> type : types) {
+				components.put(type, type);
+			}
+			return true;
+		} catch (ClassNotFoundException e) {
+			/* ok, don't register */
 			return false;
 		}
 	}

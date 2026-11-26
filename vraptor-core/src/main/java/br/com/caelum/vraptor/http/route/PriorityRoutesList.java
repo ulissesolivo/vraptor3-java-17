@@ -39,7 +39,7 @@ public class PriorityRoutesList implements Collection<Route> {
 
 	private List<Route> cache;
 
-	private final Lock cacheLock = new ReentrantLock();
+	private Lock cacheLock = new ReentrantLock();
 
 	public PriorityRoutesList() {
 		map = new TreeMap<Integer, Set<Route>>();

@@ -17,17 +17,13 @@
 package br.com.caelum.vraptor.ioc.spring.components;
 
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Fabio Kung
  */
 @RequestScoped
 public class RequestScopedComponent implements RequestScopedContract {
-	private static final Logger LOGGER = LoggerFactory.getLogger(RequestScopedComponent.class);
-
 	public void operation() {
-		LOGGER.debug("operation done");
+	System.out.println("operation done");
 	}
 }

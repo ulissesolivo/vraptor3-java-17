@@ -70,7 +70,7 @@ public class DefaultDeserializers implements Deserializers {
 		return null;
 	}
 
-	private static String removeChar(String type, String by) {
+	private String removeChar(String type, String by) {
 		return type.substring(type.lastIndexOf(by)+1);
 	}
 

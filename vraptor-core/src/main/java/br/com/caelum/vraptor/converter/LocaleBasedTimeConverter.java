@@ -50,7 +50,7 @@ public class LocaleBasedTimeConverter implements Converter<Time> {
 		}
 	}
 
-	private static boolean isUncompleteTime(String value) {
+	private boolean isUncompleteTime(String value) {
 		return Pattern.compile("[0-9]{2}\\:[0-9]{2}").matcher(value).find();
 	}
 }

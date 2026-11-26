@@ -99,7 +99,7 @@ public class ParametersInstantiatorInterceptor implements Interceptor {
 	private void addHeaderParametersToAttribute(ResourceMethod method) {
 		Method trueMethod = method.getMethod();
 
-		String[] parametersLocal = parameterNameProvider.parameterNamesFor(trueMethod);
+		String[] parameters = parameterNameProvider.parameterNamesFor(trueMethod);
 
 		Annotation[][] annotations = trueMethod.getParameterAnnotations();
 		for (int i = 0; i < annotations.length; i++) {
@@ -107,7 +107,7 @@ public class ParametersInstantiatorInterceptor implements Interceptor {
 				if (annotation instanceof HeaderParam) {
 					HeaderParam headerParam = (HeaderParam) annotation;
 					String value = request.getHeader(headerParam.value());
-					request.setAttribute(parametersLocal[i], value);
+					request.setAttribute(parameters[i], value);
 				}
 			}
 		}
@@ -121,7 +121,7 @@ public class ParametersInstantiatorInterceptor implements Interceptor {
 		if (name.contains("[]")) {
 			String[] values = request.getParameterValues(name);
 			for (int i = 0; i < values.length; i++) {
-				request.setParameter(name.replace("[]", "[" + i + ']'), values[i]);
+				request.setParameter(name.replace("[]", "[" + i + "]"), values[i]);
 			}
 		}
 	}

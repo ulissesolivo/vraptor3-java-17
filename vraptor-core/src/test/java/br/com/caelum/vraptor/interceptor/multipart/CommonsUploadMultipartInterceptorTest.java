@@ -4,9 +4,9 @@ import static com.google.common.io.ByteStreams.toByteArray;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -296,6 +296,6 @@ public class CommonsUploadMultipartInterceptorTest {
 		when(mockUpload.parseRequest(request)).thenThrow(new FileUploadException());
 		interceptor.intercept(stack, method, instance);
 
-		verify(validator).add(any(I18nMessage.class));
+		verify(validator).add(any(br.com.caelum.vraptor.validator.ValidationMessage.class));
 	}
 }

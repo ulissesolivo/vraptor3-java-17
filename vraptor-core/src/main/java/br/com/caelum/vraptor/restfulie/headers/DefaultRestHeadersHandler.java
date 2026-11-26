@@ -50,6 +50,15 @@ public class DefaultRestHeadersHandler implements RestHeadersHandler {
 		} else {
 			restfulHeadersFor(defaults.getEtagFor(resource), defaults.getLastModifiedFor(resource));
 		}
+
+//		TagCoisa t = tagInfoFor(resource);
+//		resource.getRelations(control)
+//		Relation rel;
+//		rel.getName()
+//		rel.getUri()
+//		addHeader("Link", "rel=name;uri=uri")
+//		precisa limpar depois
+
 	}
 
 	private void restfulHeadersFor(String etag, Calendar lastModified) {

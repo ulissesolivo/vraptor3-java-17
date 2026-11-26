@@ -29,7 +29,13 @@ import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostP
  * @author Fabio Kung
  */
 class InjectionBeanPostProcessor extends AutowiredAnnotationBeanPostProcessor {
-	
+
+
+	//  in case we are required to change the injection annotation:
+	//  public InjectionBeanPostProcessor() {
+	//	  this.setAutowiredAnnotationType(In.class);
+	//  }
+
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Constructor[] determineCandidateConstructors(Class beanClass, String beanName) throws BeansException {
@@ -44,7 +50,7 @@ class InjectionBeanPostProcessor extends AutowiredAnnotationBeanPostProcessor {
 	}
 
 	@SuppressWarnings({ "rawtypes" })
-	private static Constructor checkIfThereIsOnlyOneNonDefaultConstructor(Class beanClass) {
+	private Constructor checkIfThereIsOnlyOneNonDefaultConstructor(Class beanClass) {
 	Constructor[] constructors = beanClass.getDeclaredConstructors();
 	if (constructors.length == 1) {
 		if (constructors[0].getParameterTypes().length > 0) {

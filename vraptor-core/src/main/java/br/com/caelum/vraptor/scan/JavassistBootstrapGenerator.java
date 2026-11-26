@@ -46,7 +46,7 @@ public class JavassistBootstrapGenerator implements BootstrapGenerator {
 		final String simpleName = fullName.substring(WebAppBootstrap.STATIC_BOOTSTRAP_NAME.lastIndexOf('.') + 1);
 		final String packageName = fullName.substring(0, fullName.lastIndexOf('.'));
 		final String webInfClasses = resolver.findWebInfClassesLocation().getPath();
-		final String path = webInfClasses + '/' + packageName.replace('.', '/') + '/';
+		final String path = webInfClasses + "/" + packageName.replace('.', '/') + "/";
 		final String filename = path + simpleName + ".class";
 
 		// create the entire package path
@@ -83,13 +83,13 @@ public class JavassistBootstrapGenerator implements BootstrapGenerator {
 			// write the file
 			cf.write(new DataOutputStream(new FileOutputStream(filename)));
 
-			return clazz.toClass();
+			return (Class<WebAppBootstrap>) clazz.toClass();
 		} catch (Exception e) {
 			throw new ScannerException("Error while generating the class file", e);
 		}
 	}
 
-	private static String createMethodDef(Collection<String> components) {
+	private String createMethodDef(Collection<String> components) {
 		StringBuilder methodDef = new StringBuilder()
 			.append("public void configure (br.com.caelum.vraptor.ComponentRegistry registry){");
 
@@ -99,7 +99,7 @@ public class JavassistBootstrapGenerator implements BootstrapGenerator {
 					 .append(".class);");
 		}
 
-		methodDef.append('}');
+		methodDef.append("}");
 
 		return methodDef.toString();
 	}

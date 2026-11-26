@@ -140,7 +140,7 @@ public class GsonDeserialization implements Deserializer {
 		return method.getMethod().getParameterTypes();
 	}
 
-	private static Class<?>[] parseGenericParameters(Method method, Class<?> genericType) {
+	private Class<?>[] parseGenericParameters(Method method, Class<?> genericType) {
 		Class<?>[] paramClasses = method.getParameterTypes();
 		Type[] paramTypes = method.getGenericParameterTypes();
 
@@ -159,7 +159,7 @@ public class GsonDeserialization implements Deserializer {
 		return result;
 	}
 
-	private static Class<?> getSuperClassTypeArgument(ResourceMethod method) {
+	private Class<?> getSuperClassTypeArgument(ResourceMethod method) {
 		Type genericType = method.getResource().getType().getGenericSuperclass();
 
 		if (genericType instanceof ParameterizedType) {
@@ -194,7 +194,7 @@ public class GsonDeserialization implements Deserializer {
 	}
 
 	private String getRequestCharset() {
-		String charset = Objects.firstNonNull(request.getHeader("Accept-Charset"), "UTF-8");
+		String charset = com.google.common.base.MoreObjects.firstNonNull(request.getHeader("Accept-Charset"), "UTF-8");
 		return charset.split(",")[0];
 	}
 }

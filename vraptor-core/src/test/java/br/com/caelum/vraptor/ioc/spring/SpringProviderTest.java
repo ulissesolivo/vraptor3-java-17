@@ -20,8 +20,8 @@ import static br.com.caelum.vraptor.config.BasicConfiguration.BASE_PACKAGES_PARA
 import static br.com.caelum.vraptor.config.BasicConfiguration.SCANNING_PARAM;
 import static java.util.Arrays.asList;
 import static java.util.Collections.enumeration;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Matchers.isA;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;

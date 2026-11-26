@@ -39,7 +39,6 @@ public interface InterceptorStack {
 	void add(Class<? extends Interceptor> interceptor);
 
 	/**
-	 * @deprecated
 	 * Adds this interceptor at the head of the stack.
 	 */
 	@Deprecated

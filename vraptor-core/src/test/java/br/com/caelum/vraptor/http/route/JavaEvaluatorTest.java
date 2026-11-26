@@ -40,7 +40,7 @@ public class JavaEvaluatorTest {
 	}
 
 	class Client {
-		private final Long id;
+		private Long id;
 		private Client child;
 		private List<String> emails;
 		private Set<Integer> favoriteNumbers;

@@ -31,7 +31,7 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped;
 @ApplicationScoped
 public class TopologicalSortedInterceptorRegistry implements InterceptorRegistry {
 
-	private final Graph<Class<? extends Interceptor>> set = new Graph<Class<? extends Interceptor>>();
+	private Graph<Class<? extends Interceptor>> set = new Graph<Class<? extends Interceptor>>();
 
 	public List<Class<? extends Interceptor>> all() {
 		return set.topologicalOrder();

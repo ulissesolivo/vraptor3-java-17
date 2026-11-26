@@ -111,7 +111,7 @@ public class DeserializingInterceptor implements Interceptor {
 
 	}
 
-	private static String mime(String contentType) {
+	private String mime(String contentType) {
 		if (contentType.contains(";")) {
 			return contentType.split(";")[0];
 		}

@@ -177,7 +177,7 @@ public abstract class GenericContainerTest {
 					public Void insideRequest(Container container) {
 						Result result = container.instanceFor(Result.class);
 						HttpServletRequest request = container.instanceFor(HttpServletRequest.class);
-						assertSame(result, Objects.firstNonNull(request.getAttribute("result"), request.getAttribute("defaultResult")));
+						assertSame(result, com.google.common.base.MoreObjects.firstNonNull(request.getAttribute("result"), request.getAttribute("defaultResult")));
 						return null;
 					}
 				});
@@ -382,7 +382,7 @@ public abstract class GenericContainerTest {
 	@RequestScoped
 	static public class DisposableComponent {
 		private boolean destroyed;
-		private final Object dependency = new Object();
+		private Object dependency = new Object();
 		
 		public Object getDependency() {
 			return dependency;

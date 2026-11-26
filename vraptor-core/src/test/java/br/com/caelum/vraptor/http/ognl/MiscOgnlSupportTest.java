@@ -134,7 +134,7 @@ public class MiscOgnlSupportTest {
 	public void isCapableOfDealingWithEmptyParameterForInternalWrapperValue() throws OgnlException {
 	when(converters.to(Integer.class)).thenReturn(new IntegerConverter());
 	Ognl.setValue("cat.firstLeg.id", context, house, "");
-	assertThat(house.cat.firstLeg.id, is(equalTo(null)));
+	org.junit.Assert.assertNull(house.cat.firstLeg.id);
 	}
 
 	@Test

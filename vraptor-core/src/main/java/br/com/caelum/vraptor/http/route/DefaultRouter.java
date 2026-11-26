@@ -95,7 +95,7 @@ public class DefaultRouter implements Router {
 		return route.resourceMethod(request, uri);
 	}
 
-	private static void checkIfThereIsAnotherRoute(String uri, HttpMethod method, Iterator<Route> iterator, Route route) {
+	private void checkIfThereIsAnotherRoute(String uri, HttpMethod method, Iterator<Route> iterator, Route route) {
 		if (iterator.hasNext()) {
 			Route otherRoute = iterator.next();
 			if (route.getPriority() == otherRoute.getPriority()) {
@@ -139,11 +139,11 @@ public class DefaultRouter implements Router {
 			try {
 				return matches.next().urlFor(type, method, params);
 			} catch (Exception e) {
-				throw new VRaptorException("The selected route is invalid for redirection: " + type.getName() + '.'
+				throw new VRaptorException("The selected route is invalid for redirection: " + type.getName() + "."
 						+ method.getName(), e);
 			}
 		}
-		throw new RouteNotFoundException("The selected route is invalid for redirection: " + type.getName() + '.'
+		throw new RouteNotFoundException("The selected route is invalid for redirection: " + type.getName() + "."
 				+ method.getName());
 	}
 
@@ -173,6 +173,14 @@ public class DefaultRouter implements Router {
 		return new Predicate<Route>() {
 			public boolean apply(Route route) {
 			return route.allowedMethods().contains(method);
+			}
+		};
+	}
+	
+	private Predicate<Annotation[]> hasAnnotation(final Class<?> annotation) {
+		return new Predicate<Annotation[]>() {
+			public boolean apply(Annotation[] param) {
+			return any(asList(param), instanceOf(annotation));
 			}
 		};
 	}

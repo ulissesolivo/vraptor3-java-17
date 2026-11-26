@@ -33,11 +33,7 @@ import br.com.caelum.vraptor.validator.ValidationMessage;
  * 
  * @author Guilherme Silveira
  */
-public final class VRaptorMatchers {
-
-	private VRaptorMatchers () {
-		throw new InstantiationError( "Must not instantiate this class" );
-	}
+public class VRaptorMatchers {
 
 	public static TypeSafeMatcher<ResourceMethod> resourceMethod(final Method method) {
 	return new TypeSafeMatcher<ResourceMethod>() {
@@ -80,7 +76,7 @@ public final class VRaptorMatchers {
 		return new TypeSafeMatcher<ValidationMessage>() {
 
 			protected void describeMismatchSafely(ValidationMessage item, Description mismatchDescription) {
-				mismatchDescription.appendText(" validation message='" +item.getMessage() + "', category = '"+item.getCategory()+ '\'');
+				mismatchDescription.appendText(" validation message='" +item.getMessage() + "', category = '"+item.getCategory()+"'");
 			}
 
 			protected boolean matchesSafely(ValidationMessage m) {
@@ -88,7 +84,7 @@ public final class VRaptorMatchers {
 		}
 
 			public void describeTo(Description description) {
-				description.appendText(" validation message='" +message + "', category = '"+category+ '\'');
+				description.appendText(" validation message='" +message + "', category = '"+category+"'");
 			}
 			
 		};

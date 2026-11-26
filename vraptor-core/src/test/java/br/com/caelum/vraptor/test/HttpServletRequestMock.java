@@ -30,7 +30,7 @@ import br.com.caelum.vraptor.http.MutableRequest;
  */
 public class HttpServletRequestMock extends HttpServletRequestWrapper implements MutableRequest {
 	private final Map<String, Object> attributes = new HashMap<String, Object>();
-	private final HttpSession session;
+	private HttpSession session;
 
 	public HttpServletRequestMock(HttpSession session, final MutableRequest mock) {
 		super(mock);

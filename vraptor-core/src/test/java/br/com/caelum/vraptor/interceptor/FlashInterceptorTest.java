@@ -3,8 +3,8 @@ package br.com.caelum.vraptor.interceptor;
 import static br.com.caelum.vraptor.interceptor.FlashInterceptor.FLASH_INCLUDED_PARAMETERS;
 import static java.util.Collections.singletonMap;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -103,7 +103,7 @@ public class FlashInterceptorTest {
 		interceptor.intercept(stack, null, null);
 		response.sendRedirect("Anything");
 
-		verify(session, never()).setAttribute(anyString(), anyObject());
+		verify(session, never()).setAttribute(anyString(), any());
 	}
 	
 	@Test

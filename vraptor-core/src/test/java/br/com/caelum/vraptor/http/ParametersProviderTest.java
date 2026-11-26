@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertArrayEquals;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -380,7 +380,7 @@ public abstract class ParametersProviderTest {
 	protected void thereAreNoParameters() {
 		when(request.getParameterNames()).thenReturn(Collections.enumeration(Collections.<String>emptySet()));
 		when(request.getParameterMap()).thenReturn(Collections.<String, String[]>emptyMap());
-		when(nameProvider.parameterNamesFor(any(Method.class))).thenReturn(new String[]{"any"});
+		when(nameProvider.parameterNamesFor(any(AccessibleObject.class))).thenReturn(new String[]{"any"});
 	}
 
 	protected void requestParameterIs(ResourceMethod method, String paramName, String... values) {

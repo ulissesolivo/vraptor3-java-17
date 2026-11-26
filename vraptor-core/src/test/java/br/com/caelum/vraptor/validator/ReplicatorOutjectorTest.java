@@ -1,6 +1,6 @@
 package br.com.caelum.vraptor.validator;
 
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +35,7 @@ public class ReplicatorOutjectorTest {
 
 	@Test
 	public void shouldReplicateMethodParametersToNextRequest() throws Exception {
-		when(provider.parameterNamesFor(any(Method.class))).thenReturn(new String[] {"first", "second", "third"});
+		when(provider.parameterNamesFor(org.mockito.ArgumentMatchers.<Method>any())).thenReturn(new String[] {"first", "second", "third"});
 		when(method.getParameters()).thenReturn(new Object[] {1, 2.0, 3l});
 
 		outjector.outjectRequestMap();
