@@ -1,6 +1,6 @@
 package br.com.caelum.vraptor.scan;
 
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +21,6 @@ public class NullWebAppBootstrapTest {
 	@Test
 	public void shouldNotDoAnything() {
 	new NullWebAppBootstrap().configure(registry);
-	verifyZeroInteractions(registry);
+	verifyNoInteractions(registry);
 	}
 }

@@ -27,7 +27,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
@@ -132,7 +132,7 @@ public class DownloadInterceptorTest {
 		interceptor.intercept(stack, resourceMethod, null);
 
 		verify(stack).next(resourceMethod, null);
-		verifyZeroInteractions(response);
+		verifyNoInteractions(response);
 
 	}
 	@Test
@@ -144,7 +144,7 @@ public class DownloadInterceptorTest {
 			interceptor.intercept(stack, resourceMethod, null);
 			fail("expected NullPointerException");
 		} catch (NullPointerException e) {
-			verifyZeroInteractions(response);
+			verifyNoInteractions(response);
 		}
 	}
 	

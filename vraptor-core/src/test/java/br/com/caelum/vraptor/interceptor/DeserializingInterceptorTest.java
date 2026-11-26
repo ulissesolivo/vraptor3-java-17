@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -72,7 +72,7 @@ public class DeserializingInterceptorTest {
 
 		interceptor.intercept(stack, consumeXml, null);
 		verify(status).unsupportedMediaType("Request with media type [image/jpeg]. Expecting one of [application/xml].");
-		verifyZeroInteractions(stack);
+		verifyNoInteractions(stack);
 	}
 
 
@@ -83,7 +83,7 @@ public class DeserializingInterceptorTest {
 
 		interceptor.intercept(stack, consumeXml, null);
 		verify(status).unsupportedMediaType("Unable to handle media type [application/xml]: no deserializer found.");
-		verifyZeroInteractions(stack);
+		verifyNoInteractions(stack);
 	}
 
 	@Test
